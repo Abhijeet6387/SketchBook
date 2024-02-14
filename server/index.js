@@ -4,11 +4,10 @@ const { Server } = require("socket.io");
 const cors = require("cors");
 
 const app = express();
-// const isDev = app.settings.env === "development";
-const URL = "https://sketch-book-tau.vercel.app/";
-  // isDev
-  // ? "http://localhost:3000"
-  // : "https://sketch-book-tau.vercel.app/";
+const isDev = app.settings.env === "development";
+const URL = isDev
+  ? "http://localhost:3000"
+  : "https://sketch-book-tau.vercel.app/";
 app.use(cors({ origin: URL }));
 const httpServer = createServer(app);
 const io = new Server(httpServer, { cors: URL });
